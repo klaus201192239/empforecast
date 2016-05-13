@@ -6,6 +6,8 @@
 		
 		<mapper class="com.klaus.dao.CourseDAO" />
 		<mapper class="com.klaus.dao.StudentDAO" />
+		<mapper class="com.klaus.dao.UserInfoDAO" />
+		<mapper class="com.klaus.dao.UserLogonDAO" />
 		
 	</mappers>
 	
