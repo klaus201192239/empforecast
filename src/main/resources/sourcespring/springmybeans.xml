@@ -11,8 +11,7 @@
      http://www.springframework.org/schema/aop/spring-aop-3.0.xsd  
      http://www.springframework.org/schema/context  
      http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-
-	<import resource="springmybatis.xml"/>
-	<import resource="springmybeans.xml"/>
+	
+	<bean id="identityserviceimpl" class="com.klaus.service.serviceimpl.IdentityServiceImpl"/>
 
 </beans>  
