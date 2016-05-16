@@ -4,8 +4,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
+import com.klaus.apiservice.IdentityService;
 import com.klaus.factory.MyBeansFactory;
-import com.klaus.service.interfaceservice.IdentityService;
 
 @Path("/identity")
 public class IdentityVerification {

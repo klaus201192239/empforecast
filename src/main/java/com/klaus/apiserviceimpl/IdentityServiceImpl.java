@@ -1,6 +1,6 @@
-package com.klaus.service.serviceimpl;
+package com.klaus.apiserviceimpl;
 
-import com.klaus.service.interfaceservice.IdentityService;
+import com.klaus.apiservice.IdentityService;
 
 public class IdentityServiceImpl implements IdentityService {
 

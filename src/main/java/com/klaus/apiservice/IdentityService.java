@@ -1,4 +1,4 @@
-package com.klaus.service.interfaceservice;
+package com.klaus.apiservice;
 
 public interface IdentityService {
 	
