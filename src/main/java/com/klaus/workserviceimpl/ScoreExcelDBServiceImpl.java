@@ -1,6 +1,6 @@
-package com.klaus.service.serviceimpl;
+package com.klaus.workserviceimpl;
 
-import com.klaus.service.interfaceservice.ExcelDBService;
+import com.klaus.workservice.ExcelDBService;
 
 public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
