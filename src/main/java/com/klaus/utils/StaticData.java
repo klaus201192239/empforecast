@@ -13,7 +13,7 @@ public class StaticData {
 	public static final class StringData {
 
 		public final static String FileJobPath = "";
-		public final static String FileScorePath = "";
+		public final static String FileScorePath = "E:/temp/";
 		
 	}
 	

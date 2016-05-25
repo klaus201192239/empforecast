@@ -1,9 +1,9 @@
 package com.klaus.apiservice;
 
-import java.io.InputStream;
+import javax.servlet.http.HttpServletRequest;
 
 public interface ScoreService {
 	
-	public String uploadExcel(InputStream ioBodyStream);
+	public String uploadExcel(HttpServletRequest req);
 	
 }

@@ -15,5 +15,7 @@
 	<bean id="identityserviceimpl" class="com.klaus.apiserviceimpl.IdentityServiceImpl"/>
 	<bean id="scoreserviceimpl" class="com.klaus.apiserviceimpl.ScoreServiceImpl"/>
 	<bean id="abilityserviceimpl" class="com.klaus.apiserviceimpl.AbilityServiceImpl"/>
+	<bean id="scorewrworker" class="com.klaus.workserviceimpl.ScoreWRWorkerServiceImpl"/>
+	<bean id="empwrworker" class="com.klaus.workserviceimpl.EmpWRWorkerServiceImpl"/>
 
 </beans>  
