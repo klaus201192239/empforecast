@@ -12,8 +12,10 @@ public class StaticData {
 	
 	public static final class StringData {
 
-		public final static String FileJobPath = "";
-		public final static String FileScorePath = "E:/temp/";
+		public final static String FileJobPath =  "E:/temp/job/";
+		public final static String FileScorePath = "E:/temp/score/";
+		public final static String ScoreWorker = "scoreworker";
+		public final static String EmpWorker = "employmentworker";
 		
 	}
 	

@@ -8,6 +8,7 @@
 		<mapper class="com.klaus.dao.StudentDAO" />
 		<mapper class="com.klaus.dao.UserInfoDAO" />
 		<mapper class="com.klaus.dao.UserLogonDAO" />
+		<mapper class="com.klaus.dao.WorkerDAO" />
 		
 	</mappers>
 	
