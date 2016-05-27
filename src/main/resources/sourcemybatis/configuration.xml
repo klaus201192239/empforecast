@@ -9,6 +9,9 @@
 		<mapper class="com.klaus.dao.UserInfoDAO" />
 		<mapper class="com.klaus.dao.UserLogonDAO" />
 		<mapper class="com.klaus.dao.WorkerDAO" />
+		<mapper class="com.klaus.dao.StuCourseDAO" />
+		<mapper class="com.klaus.dao.AbilityDAO" />
+		<mapper class="com.klaus.dao.CourseAbilityDAO" />
 		
 	</mappers>
 	

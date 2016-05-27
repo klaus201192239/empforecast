@@ -22,9 +22,28 @@ public class AbilityServiceAPI {
 	public Map<?, ?> addIndex(final List<?> jsonIndexes){
 		
 		
+		// [{"name":"AAAA"},{"name":"BBBBBBB"},{"name":"CCCCCC"},{"name":"DDDDDDDD"} ]
+		
 		AbilityService service=(AbilityService)MyBeansFactory.getBeans("abilityserviceimpl");
 		
 		return service.addIndex(jsonIndexes);
+		
+		
+	}
+	
+	
+	@Path("/courseability")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Map<?, ?> addCourseAbility(final List<?> jsonMapping){
+		
+		
+		// [{"courseid":"AAAA","abilityid":"BBBBBBB","mapping":"CCCCCC"}]
+		
+		AbilityService service=(AbilityService)MyBeansFactory.getBeans("abilityserviceimpl");
+		
+		return service.addCourseAbility(jsonMapping);
 		
 		
 	}
