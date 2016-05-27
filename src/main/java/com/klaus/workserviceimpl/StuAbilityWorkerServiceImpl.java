@@ -80,9 +80,7 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 	
 	
 	private void insertStuAbility(String stuid){
-		
-		
-		
+
 		StuCourseDAO stuCourseDao=(StuCourseDAO)MyBeansFactory.getBeans("stucoursedao");
 		List<StuCourse> list=stuCourseDao.getStudentCourseByStuId(stuid);
 		
@@ -148,12 +146,19 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 						
 					}
 					
-				}
-				
-				
+				}				
 			}
 			
+			
+			System.out.println(abilityA+","+abilityB+","+abilityC+","+abilityD+","+abilityE+","+abilityF);
+			
+			
+			
 		}
+		
+		
+		
+		
 		
 	}
 	
@@ -176,7 +181,9 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 	private double ScoreTransaction(String score){
 		
 		if(null==score){
+			
 			return 0;
+			
 		}
 		
 		double tempDouble=0.0;
@@ -194,43 +201,55 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 			
 			if("通过".equals(score)){
 				
+				return 60.0;
+				
 				
 				
 			}else{
 				
 				if(score.contains("补1")){
+
 					
+					String s=score.replace("补1", "");
+
 					
+					return Double.parseDouble(s)*0.8;
 					
 				}else{
 					
 					if(score.contains("补2")){
 						
+						String s=score.replace("补2", "");						
 						
+						return Double.parseDouble(s)*0.6;
 						
 					}else{
 						
 						if(score.contains("重1")){
 							
+							String s=score.replace("重1", "");
 							
+							return Double.parseDouble(s)*0.4;
 							
 						}else{
 							
 							if(score.contains("重2")){
 								
+								String s=score.replace("重2", "");
 								
+								return Double.parseDouble(s)*0.2;
 								
 							}else{
 								
 								if(score.contains("取消资格")){
 									
-									
+									return 0.0;
 									
 								}else{
 									
 									if(score.contains("旷")){
 										
-										
+										return 0.0;
 										
 									}else{
 										
