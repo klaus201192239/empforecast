@@ -7,12 +7,15 @@ import java.util.Map;
 import com.klaus.bean.Ability;
 import com.klaus.bean.CourseAbility;
 import com.klaus.bean.StuCourse;
+import com.klaus.bean.StudentAbility;
 import com.klaus.dao.AbilityDAO;
 import com.klaus.dao.CourseAbilityDAO;
 import com.klaus.dao.StuCourseDAO;
+import com.klaus.dao.StudentAbilityDAO;
 import com.klaus.dao.WorkerDAO;
 import com.klaus.factory.MyBeansFactory;
 import com.klaus.utils.StaticData;
+import com.klaus.utils.TimeUtil;
 import com.klaus.workservice.WorkerService;
 
 public class StuAbilityWorkerServiceImpl implements WorkerService {
@@ -43,6 +46,8 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 			}
 			
 			for(int i=0;i<students.size();i++){
+				
+				//System.out.println(students.get(i));
 				
 				insertStuAbility(students.get(i));
 
@@ -86,6 +91,7 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 		
 		
 		CourseAbilityDAO courseAbilityDao=(CourseAbilityDAO)MyBeansFactory.getBeans("courseabilitydao");
+		StudentAbilityDAO studentAbilityDao=(StudentAbilityDAO)MyBeansFactory.getBeans("studentabilitydao");
 		
 		double abilityA=0,abilityB=0,abilityC=0,abilityD=0,abilityE=0,abilityF=0;
 		
@@ -149,8 +155,7 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 				}				
 			}
 			
-			
-			System.out.println(abilityA+","+abilityB+","+abilityC+","+abilityD+","+abilityE+","+abilityF);
+
 			
 			
 			
@@ -158,6 +163,28 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 		
 		
 		
+		
+		StudentAbility abi=new StudentAbility();
+		abi.setId(TimeUtil.getObjectId());
+		abi.setStuId(stuid);
+		abi.setAbilityA(reduction(abilityA));
+		abi.setAbilityB(reduction(abilityB));
+		abi.setAbilityC(reduction(abilityC));
+		abi.setAbilityD(reduction(abilityD));
+		abi.setAbilityE(reduction(abilityE));
+		abi.setAbilityF(reduction(abilityF));		
+		
+		
+		studentAbilityDao.insertStudentAbility(abi);
+		studentAbilityDao.insertStudentAbilityAll(abi);
+		
+		
+		stuCourseDao.deleteStudentCourseByStuId(stuid);
+		
+		
+		//System.out.println(stuid);
+		
+		//System.out.println(abilityA+","+abilityB+","+abilityC+","+abilityD+","+abilityE+","+abilityF);
 		
 		
 	}
@@ -280,5 +307,11 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 		
 	}
 
+	
+	private double reduction(double x){
+		
+		return x;
+		
+	}
 	
 }

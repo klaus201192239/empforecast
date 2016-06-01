@@ -1,13 +1,7 @@
 package com.klaus.timer;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
-
-import com.klaus.factory.MyBeansFactory;
-import com.klaus.workservice.WorkerService;
 
 public class JobTimer extends HttpServlet {
 
