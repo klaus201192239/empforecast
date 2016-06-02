@@ -2,6 +2,7 @@ package com.klaus.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -11,6 +12,9 @@ public interface CourseDAO {
 
 	@Insert("insert into course(id,courseid,coursename,coursegrade) values (#{id},#{courseId},#{courseName},#{courseGrade});")
 	public void insertCourse(Course course);
+	
+	@Insert("insert into coursetemp(id,courseid,coursename,coursegrade) values (#{id},#{courseId},#{courseName},#{courseGrade});")
+	public void insertCourseTemp(Course course);
 
 	@Select("select id from course where courseid=#{courseid}")
 	public String getCourseId(String courseid);
@@ -20,5 +24,8 @@ public interface CourseDAO {
 
 	@Select("select * from course")
 	public List<Course> getCourse();
+	
+	@Delete("delete from coursetemp where id=#{id}")
+	public void deleteCourseById(String id);
 
 }

@@ -8,7 +8,6 @@ import javax.ws.rs.core.Context;
 import com.klaus.apiservice.ScoreService;
 import com.klaus.factory.MyBeansFactory;
 
-
 @Path("/score")
 public class ScoreServiceAPI {
 

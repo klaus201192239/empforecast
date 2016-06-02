@@ -48,4 +48,20 @@ public class AbilityServiceAPI {
 		
 	}
 	
+	
+	@Path("/abilitylist")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<?> getAbilityList(){
+		
+		// [{"id":"AAAA","name":"BBBBBBB"},{"id":"CCCCCC","name":"LLLL"}]
+		
+		AbilityService service=(AbilityService)MyBeansFactory.getBeans("abilityserviceimpl");
+		
+		return service.getAbilityList();
+		
+		
+	}
+	
+	
 }

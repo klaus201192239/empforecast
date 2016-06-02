@@ -18,8 +18,11 @@ public interface AbilityDAO {
 	@Select("select name from ability where id=#{id}")
     public String getIdById(String id);
 	
-	@Select("select * from ability")
+	@Select("select * from ability order by id desc")
     public List<Ability> getAllInfo();
+	
+	@Select("select * from abilitytemp order by id desc")
+    public List<Ability> getAbilityInfo();
 	
 	@Select("select count(*) from ability where id=#{id}")
     public int getAbilityCount(String id);

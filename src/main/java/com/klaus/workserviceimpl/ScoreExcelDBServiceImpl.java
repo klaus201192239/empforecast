@@ -238,6 +238,7 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 		return cellValue;
 	}
 
+	
 	private void getCousrInfo(int r, int c, String cellValue) {
 
 		if (r == 1 && c >= 5) {
