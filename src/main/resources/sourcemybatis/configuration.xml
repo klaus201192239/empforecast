@@ -13,6 +13,7 @@
 		<mapper class="com.klaus.dao.AbilityDAO" />
 		<mapper class="com.klaus.dao.CourseAbilityDAO" />
 		<mapper class="com.klaus.dao.StudentAbilityDAO" />
+		<mapper class="com.klaus.dao.ProductStateDAO" />
 		
 	</mappers>
 	

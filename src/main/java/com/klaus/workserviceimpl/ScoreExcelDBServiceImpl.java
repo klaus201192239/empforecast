@@ -104,7 +104,6 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 			}
 		}
 
-
 		for (int i = 0; i < listCourseGrade.size(); i++) {
 
 			Map<String, String> tempMap = listCourseGrade.get(i);
@@ -139,62 +138,56 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 					} else {
 
 						CourseDAO course = (CourseDAO) MyBeansFactory.getBeans("coursedao");
-						
-						String courseid=course.getCourseId(key);
-						
-						if(courseid!=null){
-							
+
+						String courseid = course.getCourseId(key);
+
+						if (courseid != null) {
+
 							StuCourse stuC = new StuCourse();
 
 							stuC.setId(TimeUtil.getObjectId());
 							stuC.setCourseId(courseid);
 							stuC.setStuId(objId);
-							stuC.setScore(entry.getValue());							
-							
+							stuC.setScore(entry.getValue());
+
 							StuCourseDAO stuCS = (StuCourseDAO) MyBeansFactory.getBeans("stucoursedao");
 							stuCS.insertStudentCourse(stuC);
 							stuCS.insertStudentCourseAll(stuC);
-							
+
 						}
 					}
 
 				}
 
 			}
-			/*else{
-
-				for (Map.Entry<String, String> entry : tempMap.entrySet()) {
-
-					System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
-
-					String key = entry.getKey();
-
-					if ("StudentName".equals(key) || "StudentId".equals(key) || "StudentGrade".equals(key)
-							|| "-".equals(entry.getValue())) {
-
-					} else {
-						
-						CourseDAO course = (CourseDAO) MyBeansFactory.getBeans("coursedao");						
-						
-						StuCourseDAO stuCS = (StuCourseDAO) MyBeansFactory.getBeans("stucoursedao");
-						String idTag=stuCS.getStudentCourse(stuId, course.getCourseId(key));
-						
-						if(null==idTag){
-							
-							StuCourse stuC = new StuCourse();
-
-							stuC.setId(TimeUtil.getObjectId());
-							stuC.setCourseId(course.getCourseId(key));
-							stuC.setScore(entry.getValue());		
-							stuC.setStuId(stuId);
-							
-							stuCS.insertStudentCourse(stuC);
-							
-						}
-	
-					}
-				}
-			}*/
+			/*
+			 * else{ for (Map.Entry<String, String> entry : tempMap.entrySet())
+			 * { System.out.println("Key = " + entry.getKey() + ", Value = " +
+			 * entry.getValue()); String key = entry.getKey(); if
+			 * ("StudentName".equals(key) || "StudentId".equals(key) ||
+			 * "StudentGrade".equals(key) || "-".equals(entry.getValue())) { }
+			 * else {
+			 * 
+			 * CourseDAO course = (CourseDAO)
+			 * MyBeansFactory.getBeans("coursedao");
+			 * 
+			 * StuCourseDAO stuCS = (StuCourseDAO)
+			 * MyBeansFactory.getBeans("stucoursedao"); String
+			 * idTag=stuCS.getStudentCourse(stuId, course.getCourseId(key));
+			 * 
+			 * if(null==idTag){
+			 * 
+			 * StuCourse stuC = new StuCourse();
+			 * stuC.setId(TimeUtil.getObjectId());
+			 * stuC.setCourseId(course.getCourseId(key));
+			 * stuC.setScore(entry.getValue()); stuC.setStuId(stuId);
+			 * 
+			 * stuCS.insertStudentCourse(stuC);
+			 * 
+			 * }
+			 * 
+			 * } } }
+			 */
 
 		}
 
@@ -238,7 +231,6 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 		return cellValue;
 	}
 
-	
 	private void getCousrInfo(int r, int c, String cellValue) {
 
 		if (r == 1 && c >= 5) {

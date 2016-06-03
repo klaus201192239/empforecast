@@ -68,6 +68,11 @@
 		<property name="mapperInterface" value="com.klaus.dao.StudentAbilityDAO"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	
+	<bean id="productstatedao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.klaus.dao.ProductStateDAO"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 
 
 </beans>  
