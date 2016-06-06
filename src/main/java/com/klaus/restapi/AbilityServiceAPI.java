@@ -38,8 +38,25 @@ public class AbilityServiceAPI {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Map<?, ?> addCourseAbility(final List<?> jsonMapping){
 		
-		
-		// [{"courseid":"AAAA","abilityid":"BBBBBBB","mapping":"CCCCCC"}]
+		/*
+		   [
+    	      {"courseid":"AAAA","ability":[
+		                                     {"abilityid":"BBBBBBB","mapping":"CCCCCC"},
+		                                     {"abilityid":"BBBBBBB","mapping":"CCCCCC"},
+		                                     {"abilityid":"BBBBBBB","mapping":"CCCCCC"},
+		                                     .............................
+		                                   ]
+		       },
+		      {"courseid":"BBBB","ability":[
+			                                     {"abilityid":"BBBBBBB","mapping":"CCCCCC"},
+			                                     {"abilityid":"BBBBBBB","mapping":"CCCCCC"},
+			                                     {"abilityid":"BBBBBBB","mapping":"CCCCCC"},
+			                                     .............................
+			                               ]
+			  },
+		   ................................
+		    ]
+		*/   
 		
 		AbilityService service=(AbilityService)MyBeansFactory.getBeans("abilityserviceimpl");
 		

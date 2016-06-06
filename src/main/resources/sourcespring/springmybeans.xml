@@ -19,6 +19,6 @@
 	<bean id="empwrworker" class="com.klaus.workserviceimpl.EmpWRWorkerServiceImpl"/>
 	<bean id="scoreexcelDBServiceimpl" class="com.klaus.workserviceimpl.ScoreExcelDBServiceImpl"/>
 	<bean id="stuabilityworker" class="com.klaus.workserviceimpl.StuAbilityWorkerServiceImpl"/>
-	<bean id="empforecastserviceimpl" class="com.klaus.workserviceimpl.EmpForecastServiceImpl"/>
+    <bean id="empforecastserviceimpl" class="com.klaus.apiserviceimpl.EmpForecastServiceImpl"/> 
 
 </beans>  
