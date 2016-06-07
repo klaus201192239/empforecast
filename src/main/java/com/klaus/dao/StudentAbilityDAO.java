@@ -1,7 +1,10 @@
 package com.klaus.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
 
 import com.klaus.bean.StudentAbility;
 
@@ -18,5 +21,11 @@ public interface StudentAbilityDAO {
 	
 	@Delete("delete from studentability where stuid=#{stuId}")
     public void deleteStudentAbilityByStuId(String stuId);
+	
+	@Select("select abilitya from studentabilityall;")
+    public List<Double> getAllNumberAbilityA();
+	
+	@Select("select * from studentabilityall;")
+    public List<StudentAbility> getAllInfo();
 	
 }

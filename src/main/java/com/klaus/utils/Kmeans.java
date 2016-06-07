@@ -5,20 +5,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Keans {
+public class Kmeans {
 
 	private int KNumber;
 	private double[] data;
 
-	public Keans(double[] data) {
+	public Kmeans(double[] data) {
 
 		this.data=data;
 		
-		this.KNumber=6;
+		this.KNumber=3;
 		
 	}
 
-	public Keans(int KNumber, double[] data) {
+	public Kmeans(int KNumber, double[] data) {
 
 		this.KNumber=KNumber;
 		this.data=data;
@@ -62,8 +62,8 @@ public class Keans {
 
 				}
 
-				System.out.print(g[i][j]);
-				System.out.print("\t");
+			//	System.out.print(g[i][j]);
+			//	System.out.print("\t");
 
 			}
 
@@ -79,7 +79,7 @@ public class Keans {
 
 			list.add(map);
 
-			System.out.println();
+			//System.out.println();
 
 		}
 
