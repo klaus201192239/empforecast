@@ -1,14 +1,9 @@
 package com.klaus.test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
-import com.klaus.apiservice.AbilityService;
-import com.klaus.factory.MyBeansFactory;
+import com.klaus.utils.Keans;
 
 public class TestMain {
 
@@ -16,52 +11,24 @@ public class TestMain {
 
 		System.out.println("Test Start");
 		
+		double[] p = { 165.2, 2, 34.1, 150.5, 6, 7, 9, 10, 5.5, 4.7, 11.4, 100.3, 150.5, 204.3, 100 };
+		int k = 3;
 		
-		List<Map> array = new ArrayList<Map>();
+		Keans kmean=new Keans( p);
 
-		Map obj = new HashMap();
-		obj.put("abilityid", "146425074613610");
-		obj.put("score", "0.12");
-		array.add(obj);
-
-		Map obj1 = new HashMap();
-		obj1.put("abilityid", "146425074621687");
-		obj1.put("score", "0.7");
-		array.add(obj1);
-
+		List<Map<String,Double>> list=kmean.classifyData();
 		
-		Map objj = new HashMap();
-		objj.put("courseid", "146484706932361");
-		objj.put("ability", array);
-
-	
+		for(int i=0;i<list.size();i++){
+			
+			Map<String,Double> map=list.get(i);
+			
+			System.out.print(map.get("maxk")+"  ");
+			System.out.print(map.get("mink")+"  ");
+			System.out.print(map.get("meank"));
+			System.out.println();
+			
+		}
 		
-		List<Map> array1 = new ArrayList<Map>();
-
-		Map obj11 = new HashMap();
-		obj11.put("abilityid", "146425074613610");
-		obj11.put("score", "0.12");
-		array1.add(obj11);
-
-		Map obj122 = new HashMap();
-		obj122.put("abilityid", "146425074621687");
-		obj122.put("score", "0.7");
-		array1.add(obj122);
-
-		Map objjj = new HashMap();
-		objjj.put("courseid", "146484706975472");
-		objjj.put("ability", array1);
-		
-		
-		List<Map> ar = new ArrayList<Map>();
-		ar.add( objj);
-		ar.add( objjj);
-		
-		System.out.println(ar);
-
-		AbilityService service = (AbilityService) MyBeansFactory.getBeans("abilityserviceimpl");
-
-		service.addCourseAbility(ar);
 
 		System.out.println("Test End");
 

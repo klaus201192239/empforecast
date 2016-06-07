@@ -367,16 +367,12 @@ public class ForecastWorkerServiceImpl implements WorkerService {
 		StudentAbility abi = new StudentAbility();
 		abi.setId(TimeUtil.getObjectId());
 		abi.setStuId(stuid);
-		abi.setAbilityA(reduction(abilityA));
-		abi.setAbilityB(reduction(abilityB));
-		abi.setAbilityC(reduction(abilityC));
-		abi.setAbilityD(reduction(abilityD));
-		abi.setAbilityE(reduction(abilityE));
-		abi.setAbilityF(reduction(abilityF));
-		
-		
-		
-		
+		abi.setAbilityA(abilityA);
+		abi.setAbilityB(abilityB);
+		abi.setAbilityC(abilityC);
+		abi.setAbilityD(abilityD);
+		abi.setAbilityE(abilityE);
+		abi.setAbilityF(abilityF);
 
 	}
 
@@ -491,10 +487,6 @@ public class ForecastWorkerServiceImpl implements WorkerService {
 
 	}
 
-	private double reduction(double x) {
 
-		return x;
-
-	}
 
 }
