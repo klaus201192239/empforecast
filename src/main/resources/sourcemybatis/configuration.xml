@@ -14,6 +14,9 @@
 		<mapper class="com.klaus.dao.CourseAbilityDAO" />
 		<mapper class="com.klaus.dao.StudentAbilityDAO" />
 		<mapper class="com.klaus.dao.ProductStateDAO" />
+		<mapper class="com.klaus.dao.MeansDAO" />
+		<mapper class="com.klaus.dao.TempScoreFileDAO" />
+		<mapper class="com.klaus.dao.FileUploadStatementDAO" />
 		
 	</mappers>
 	

@@ -18,6 +18,9 @@ public interface CourseDAO {
 
 	@Select("select id from course where courseid=#{courseid}")
 	public String getCourseId(String courseid);
+	
+	@Select("select id from coursetemp where courseid=#{courseid}")
+	public String getCourseTempId(String courseid);
 
 	@Select("select count(*) from course where id=#{id}")
 	public int getCourseCount(String id);

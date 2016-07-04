@@ -83,7 +83,7 @@ public class AbilityServiceImpl implements AbilityService {
 
 		
 		Map<String, String> result = new HashMap<String, String>();
-		Map<String, Double> scoreList = new HashMap<String,Double>();
+		//Map<String, Double> scoreList = new HashMap<String,Double>();
 		List<CourseAbility> list=new ArrayList<CourseAbility>();
 
 		
@@ -139,7 +139,7 @@ public class AbilityServiceImpl implements AbilityService {
 
 								list.add(ca);
 								
-								Double d=scoreList.get(courseId);
+							/*	Double d=scoreList.get(courseId);
 								
 								if(d==null){
 														
@@ -150,7 +150,7 @@ public class AbilityServiceImpl implements AbilityService {
 									d=d+temp;
 									scoreList.put(courseId, d);
 									
-								}
+								}*/
 
 							}
 							
@@ -168,11 +168,11 @@ public class AbilityServiceImpl implements AbilityService {
 
 				CourseAbility ca=list.get(j);
 				
-				double sum=scoreList.get(ca.getCourseId());
+				//double sum=scoreList.get(ca.getCourseId());
 				
-				double x=ca.getScore();
+				//double x=ca.getScore();
 				
-				ca.setScore(x/sum);
+				//ca.setScore(x/sum);
 				
 				courseAbilityService.insertCourseAbility(ca);
 
