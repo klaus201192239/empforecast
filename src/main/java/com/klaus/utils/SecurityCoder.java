@@ -1,5 +1,6 @@
 package com.klaus.utils;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 
 public class SecurityCoder {
@@ -21,12 +22,28 @@ public class SecurityCoder {
 		
 		try{
 			
-			byte[] data=coderDate.getBytes();
+		/*	byte[] data=coderDate.getBytes();
 
 			MessageDigest sha = MessageDigest.getInstance(KEY_SHA);
 			sha.update(data);
 
 			return sha.digest().toString();
+			*/
+			
+			
+			
+			byte[] data=coderDate.getBytes();
+
+			MessageDigest sha = MessageDigest.getInstance(KEY_SHA);
+			sha.update(data);
+
+			
+			
+			BigInteger shal = new BigInteger(sha.digest());
+			
+			
+			return shal.toString(32).substring(1);
+			
 			
 		}catch(Exception e){}
 		

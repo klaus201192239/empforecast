@@ -10,10 +10,10 @@ import com.klaus.bean.StudentAbility;
 
 public interface StudentAbilityDAO {
 
-	@Insert("insert into studentability(id,stuid,abilitya,abilityb,abilityc,abilityd,abilitye,abilityf) values (#{id},#{stuId},#{abilityA},#{abilityB},#{abilityC},#{abilityD},#{abilityE},#{abilityF});")
+	@Insert("insert into studentability(id,stuid,abilitya,abilityb,abilityc,abilityd,abilitye,abilityf,abilityg,abilityh,abilityi,abilityj,abilityk,abilityl,abilitym,abilityn,abilityo,abilityp,abilityq,abilityr,abilitys,abilityt,abilityu,abilityv,abilityw,abilityx,abilityaa,abilityab,abilityac,abilityad,abilityae,abilityaf,abilityag,abilityah,abilityai,abilityaj,abilityak,abilityal) values (#{id},#{stuId},#{abilitya},#{abilityb},#{abilityc},#{abilityd},#{abilitye},#{abilityf},#{abilityg},#{abilityh},#{abilityi},#{abilityj},#{abilityk},#{abilityl},#{abilitym},#{abilityn},#{abilityo},#{abilityp},#{abilityq},#{abilityr},#{abilitys},#{abilityt},#{abilityu},#{abilityv},#{abilityw},#{abilityx},#{abilityaa},#{abilityab},#{abilityac},#{abilityad},#{abilityae},#{abilityaf},#{abilityag},#{abilityah},#{abilityai},#{abilityaj},#{abilityak},#{abilityal});")
 	public void insertStudentAbility(StudentAbility stu);
 	
-	@Insert("insert into studentabilityall(id,stuid,abilitya,abilityb,abilityc,abilityd,abilitye,abilityf) values (#{id},#{stuId},#{abilityA},#{abilityB},#{abilityC},#{abilityD},#{abilityE},#{abilityF});")
+	@Insert("insert into studentabilityall(id,stuid,abilitya,abilityb,abilityc,abilityd,abilitye,abilityf,abilityg,abilityh,abilityi,abilityj,abilityk,abilityl,abilitym,abilityn,abilityo,abilityp,abilityq,abilityr,abilitys,abilityt,abilityu,abilityv,abilityw,abilityx,abilityaa,abilityab,abilityac,abilityad,abilityae,abilityaf,abilityag,abilityah,abilityai,abilityaj,abilityak,abilityal) values (#{id},#{stuId},#{abilitya},#{abilityb},#{abilityc},#{abilityd},#{abilitye},#{abilityf},#{abilityg},#{abilityh},#{abilityi},#{abilityj},#{abilityk},#{abilityl},#{abilitym},#{abilityn},#{abilityo},#{abilityp},#{abilityq},#{abilityr},#{abilitys},#{abilityt},#{abilityu},#{abilityv},#{abilityw},#{abilityx},#{abilityaa},#{abilityab},#{abilityac},#{abilityad},#{abilityae},#{abilityaf},#{abilityag},#{abilityah},#{abilityai},#{abilityaj},#{abilityak},#{abilityal});")
 	public void insertStudentAbilityAll(StudentAbility stu);
 	
 	@Delete("delete from studentability where id=#{id}")

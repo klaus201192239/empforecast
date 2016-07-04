@@ -364,7 +364,7 @@ public class ForecastWorkerServiceImpl implements WorkerService {
 
 		}
 
-		StudentAbility abi = new StudentAbility();
+	/*	StudentAbility abi = new StudentAbility();
 		abi.setId(TimeUtil.getObjectId());
 		abi.setStuId(stuid);
 		abi.setAbilityA(abilityA);
@@ -372,7 +372,7 @@ public class ForecastWorkerServiceImpl implements WorkerService {
 		abi.setAbilityC(abilityC);
 		abi.setAbilityD(abilityD);
 		abi.setAbilityE(abilityE);
-		abi.setAbilityF(abilityF);
+		abi.setAbilityF(abilityF);*/
 
 	}
 

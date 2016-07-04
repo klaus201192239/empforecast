@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,6 +34,34 @@ import com.klaus.utils.TimeUtil;
 
 public class ScoreServiceImpl implements ScoreService {
 
+	
+	public List<Map<String, String>> getTempCourse() {
+		// TODO Auto-generated method stub
+		
+		
+		CourseDAO courseDao=(CourseDAO)MyBeansFactory.getBeans("coursedao");
+		
+		List<Course> list=courseDao.getCoursesTemp();
+		
+		
+		List<Map<String,String>> arrayResult=new ArrayList<Map<String,String>>();
+		
+		for(int i=0;i<list.size();i++){
+			
+			Map<String,String> map=new HashMap<String,String>();
+			map.put(list.get(i).getId(), list.get(i).getCourseName());
+			
+			arrayResult.add(map);
+			
+		}
+		
+		
+		return arrayResult;
+	}
+	
+	
+	
+	
 	private int tag=0;
 	
 	public String uploadExcel(HttpServletRequest req) {
@@ -321,5 +351,7 @@ public class ScoreServiceImpl implements ScoreService {
 		}
 
 	}
+
+	
 
 }

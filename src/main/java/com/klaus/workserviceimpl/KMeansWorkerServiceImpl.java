@@ -52,7 +52,7 @@ public class KMeansWorkerServiceImpl implements WorkerService {
 		
 		for(int i=0;i<len;i++){
 		
-			data[i]=list.get(i).getAbilityA();
+			data[i]=list.get(i).getAbilitya();
 			
 		}
 		

@@ -84,8 +84,7 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 								String cellValue = getCellValues(cellType, cell).replaceAll("\\s*", "");
 
-								// System.out.print(cellValue + "("+r+","+c+")
-								// ");
+								// System.out.print(cellValue + "("+r+","+c+") ");
 
 								getCousrInfo(r, c, cellValue);
 
@@ -95,7 +94,7 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 						}
 
-						// System.out.println();
+						 //System.out.println();
 
 					}
 
@@ -103,6 +102,13 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 			}
 		}
+		
+		StudentDAO studentSer = (StudentDAO) MyBeansFactory.getBeans("studentdao");
+		
+		CourseDAO course = (CourseDAO) MyBeansFactory.getBeans("coursedao");
+		
+		StuCourseDAO stuCS = (StuCourseDAO) MyBeansFactory.getBeans("stucoursedao");
+		
 
 		for (int i = 0; i < listCourseGrade.size(); i++) {
 
@@ -110,8 +116,9 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 			String idCard = tempMap.get("StudentId");
 
-			StudentDAO studentSer = (StudentDAO) MyBeansFactory.getBeans("studentdao");
 
+			//System.out.println("aaaaaaaaaaaaaaaaaaaaaa");
+			
 			String stuId = studentSer.getStudentId(idCard);
 
 			if (null == stuId) {
@@ -120,10 +127,13 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 				Student student = new Student();
 				student.setId(objId);
-				student.setGrade(Integer.parseInt(tempMap.get("StudentGrade")));
+				//student.setGrade(Integer.parseInt(tempMap.get("StudentGrade")));
+				student.setGrade(2009);
 				student.setName(tempMap.get("StudentName"));
 				student.setStuId(idCard);
 
+				//System.out.println("hhhhhhhhhhhh");
+				
 				studentSer.insertStudent(student);
 
 				for (Map.Entry<String, String> entry : tempMap.entrySet()) {
@@ -135,9 +145,7 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 					if ("StudentName".equals(key) || "StudentId".equals(key) || "StudentGrade".equals(key)
 							|| "-".equals(entry.getValue())) {
 
-					} else {
-
-						CourseDAO course = (CourseDAO) MyBeansFactory.getBeans("coursedao");
+					} else {						
 
 						String courseid = course.getCourseId(key);
 
@@ -150,7 +158,7 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 							stuC.setStuId(objId);
 							stuC.setScore(entry.getValue());
 
-							StuCourseDAO stuCS = (StuCourseDAO) MyBeansFactory.getBeans("stucoursedao");
+							
 							stuCS.insertStudentCourse(stuC);
 							stuCS.insertStudentCourseAll(stuC);
 
@@ -314,7 +322,7 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 				map.put("StudentId", str);
 
-				map.put("StudentGrade", cellValue.substring(0, 5).replace(".", ""));
+				map.put("StudentGrade", "2009");
 
 			}
 

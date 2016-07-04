@@ -1,10 +1,14 @@
 package com.klaus.workserviceimpl;
 
+import java.lang.reflect.Field;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.klaus.bean.Ability;
+import com.klaus.bean.AbilityStander;
 import com.klaus.bean.CourseAbility;
 import com.klaus.bean.StuCourse;
 import com.klaus.bean.StudentAbility;
@@ -15,7 +19,6 @@ import com.klaus.dao.StudentAbilityDAO;
 import com.klaus.dao.WorkerDAO;
 import com.klaus.factory.MyBeansFactory;
 import com.klaus.utils.StaticData;
-import com.klaus.utils.TimeUtil;
 import com.klaus.workservice.WorkerService;
 
 public class StuAbilityWorkerServiceImpl implements WorkerService {
@@ -31,6 +34,9 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 
 		}
 
+		
+		System.out.println("1111111111111111");
+		
 		//List<StudentAbility> list = new ArrayList<StudentAbility>();
 
 		getAbilityInfo();
@@ -40,22 +46,29 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 
 		int tag = 1;
 
+		
+		System.out.println("22222222222222222");
+		
+		
 		while (tag != 0) {
 
+			
+			
+			System.out.println("33333333333333333");
+			
 			if (students.size() == 0) {
 				return;
 			}
 
 			for (int i = 0; i < students.size(); i++) {
 
-				// System.out.println(students.get(i));
-
-			//	StudentAbility atuab =
 				insertStuAbility(students.get(i));
 
-				//list.add(atuab);
-
 			}
+			
+			
+			
+			System.out.println("4444444444444444");
 
 			if (students.size() < 10) {
 
@@ -66,6 +79,10 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 				String studentTop = new String(students.get(students.size() - 1));
 
 				students.clear();
+				
+				
+				System.out.println("55555555555555");
+				
 
 				students = stuCourse.getStudentCourseLimit10(studentTop);
 
@@ -73,87 +90,8 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 
 		}
 
-		//kmeans(list);
-
 	}
 
-/*	private void kmeans(List<StudentAbility> list) {
-
-		StudentAbilityDAO studentAbilityDao = (StudentAbilityDAO) MyBeansFactory.getBeans("studentabilitydao");
-
-		List<Double> liA = studentAbilityDao.getAllNumberAbilityA();
-
-		List<Map<String, Double>> liAA = initAbilityArray(liA);
-
-		for (int j = 0; j < list.size(); j++) {
-
-			StudentAbility sa = list.get(j);
-
-			double temp = sa.getAbilityA();
-
-			for (int aa = 0; aa < liAA.size(); aa++) {
-
-				Map<String, Double> map = liAA.get(aa);
-
-				double max = map.get("maxk");
-				double min = map.get("mink");
-
-				if (temp <= max && temp >= min) {
-
-					double mean = map.get("meank");
-
-					sa.setAbilityA(mean);
-
-					break;
-
-				}
-
-			}
-
-			// 下一个能力指标进行聚类
-			
-			for (int aa = 0; aa < liAA.size(); aa++) {
-
-				Map<String, Double> map = liAA.get(aa);
-
-				double max = map.get("maxk");
-				double min = map.get("mink");
-
-				if (temp <= max && temp >= min) {
-
-					double mean = map.get("meank");
-
-					sa.setAbilityA(mean);
-
-					break;
-
-				}
-
-			}
-
-		}
-
-	}
-
-	*/
-	
-	/*private List<Map<String, Double>> initAbilityArray(List<Double> li) {
-
-		int len = li.size();
-
-		double[] data = new double[len];
-
-		for (int j = 0; j < len; j++) {
-
-			data[j] = li.get(j);
-
-		}
-
-		Keans kmean = new Keans(data);
-
-		return kmean.classifyData();
-
-	}*/
 
 	private int finishScoreExcel() {
 
@@ -166,14 +104,19 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 	}
 
 	private void insertStuAbility(String stuid) {
+		
+		
+		List<AbilityStander> listAbilityStander=new ArrayList<AbilityStander>();
+		double sum=0.0;
+		
 
 		StuCourseDAO stuCourseDao = (StuCourseDAO) MyBeansFactory.getBeans("stucoursedao");
 		List<StuCourse> list = stuCourseDao.getStudentCourseByStuId(stuid);
 
 		CourseAbilityDAO courseAbilityDao = (CourseAbilityDAO) MyBeansFactory.getBeans("courseabilitydao");
-		StudentAbilityDAO studentAbilityDao = (StudentAbilityDAO) MyBeansFactory.getBeans("studentabilitydao");
+		
 
-		double abilityA = 0, abilityB = 0, abilityC = 0, abilityD = 0, abilityE = 0, abilityF = 0;
+		//double abilityA = 0, abilityB = 0, abilityC = 0, abilityD = 0, abilityE = 0, abilityF = 0;
 
 		for (int i = 0; i < list.size(); i++) {
 
@@ -189,75 +132,83 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 
 				double score = ScoreTransaction(stuCourse.getScore());
 
-				if (abilityName.equals("abilityA")) {
+				
+				sum=sum+courseability.getScore();
+				
+				
+				
+				
+				AbilityStander abilityStander=new AbilityStander(abilityName,score,courseability.getScore());
+				listAbilityStander.add(abilityStander);
 
-					abilityA += score * courseability.getScore();
-
-				} else {
-					if (abilityName.equals("abilityB")) {
-
-						abilityB += score * courseability.getScore();
-
-					} else {
-
-						if (abilityName.equals("abilityC")) {
-
-							abilityC = score * courseability.getScore();
-
-						} else {
-
-							if (abilityName.equals("abilityD")) {
-
-								abilityD += score * courseability.getScore();
-
-							} else {
-
-								if (abilityName.equals("abilityE")) {
-
-									abilityE += score * courseability.getScore();
-
-								} else {
-
-									if (abilityName.equals("abilityF")) {
-
-										abilityF += score * courseability.getScore();
-
-									}
-
-								}
-
-							}
-
-						}
-
-					}
-
-				}
 			}
 
 		}
+		
 
-		StudentAbility abi = new StudentAbility();
-		abi.setId(TimeUtil.getObjectId());
-		abi.setStuId(stuid);
-		abi.setAbilityA(abilityA);
-		abi.setAbilityB(abilityB);
-		abi.setAbilityC(abilityC);
-		abi.setAbilityD(abilityD);
-		abi.setAbilityE(abilityE);
-		abi.setAbilityF(abilityF);
+		try {
+			
+			StudentAbility abi = new StudentAbility();
+			abi.setStuId(stuid);
 
-		studentAbilityDao.insertStudentAbility(abi);
+			Class<?> a =abi.getClass();		
+			
+			for (int j = 0; j < listAbilityStander.size(); j++) {
+				
+				AbilityStander ab=listAbilityStander.get(j);
+				
+				
+				
+				
+				double xMapping=ab.getMapping()/sum;
+				double xScore=ab.getScore()*xMapping;
+				
 
-		studentAbilityDao.insertStudentAbilityAll(abi);
+				
+				
+				Field f = a.getField(ab.getAbility());
+				
+				Double tempX = (Double)f.get(abi);
+				
+				f.set(abi, new Double(tempX+xScore));
+				
+				
 
-		stuCourseDao.deleteStudentCourseByStuId(stuid);
+				if(ab.getAbility().equals("abilitya")){
+					
+					System.out.println(xScore);
+					
+				}
+				
+			}
+			
+			
+			
+			
+			StudentAbilityDAO studentAbilityDao = (StudentAbilityDAO) MyBeansFactory.getBeans("studentabilitydao");
+			
+			studentAbilityDao.insertStudentAbility(abi);
+			
+	
+	//		System.out.println(abi.getAbilityaa());
+			
+			
+	//		System.out.println("aaa:"+ab.getMapping());
+	//		DecimalFormat df = new DecimalFormat("#.00");  
+     //       System.out.println("aaayyy:"+df.format(xMapping));  
+      //      System.out.println("aaasss:"+sum);  
+//			System.out.println("aaahhh:"+ab.getScore());
 
-		// System.out.println(stuid);
+			//studentAbilityDao.insertStudentAbilityAll(abi);
 
-		// System.out.println(abilityA+","+abilityB+","+abilityC+","+abilityD+","+abilityE+","+abilityF);
-
-	//	return abi;
+			//stuCourseDao.deleteStudentCourseByStuId(stuid);
+			
+			
+		} catch (Exception e) {
+			
+			
+			
+		}
 
 	}
 
