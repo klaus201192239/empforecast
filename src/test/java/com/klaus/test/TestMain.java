@@ -79,7 +79,7 @@ public class TestMain {
 		*/
 		
 
-		WorkerService worker=(WorkerService) MyBeansFactory.getBeans("stuabilityworker");
+		WorkerService worker=(WorkerService) MyBeansFactory.getBeans("empwrworker");
         worker.start();
 
 		System.out.println("Test End");

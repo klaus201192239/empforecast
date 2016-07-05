@@ -17,6 +17,7 @@
 		<mapper class="com.klaus.dao.MeansDAO" />
 		<mapper class="com.klaus.dao.TempScoreFileDAO" />
 		<mapper class="com.klaus.dao.FileUploadStatementDAO" />
+		<mapper class="com.klaus.dao.EmpInfoDAO" />
 		
 	</mappers>
 	

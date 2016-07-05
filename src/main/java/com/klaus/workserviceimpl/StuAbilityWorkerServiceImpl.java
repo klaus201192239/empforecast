@@ -1,7 +1,6 @@
 package com.klaus.workserviceimpl;
 
 import java.lang.reflect.Field;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +26,18 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 
 	public void start() {
 
+		
+		WorkerDAO service = (WorkerDAO) MyBeansFactory.getBeans("workerdao");
+
+		int flag = service.working(StaticData.StringData.StuAbilityWorker);
+
+		if (flag == 1) {
+
+			return;
+
+		}
+		
+		
 		// ScoreExcel have not finished ;then we should wait
 		if (finishScoreExcel() == 1) {
 
@@ -36,6 +47,8 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 
 		
 		System.out.println("1111111111111111");
+		
+		service.startWork(StaticData.StringData.StuAbilityWorker);
 		
 		//List<StudentAbility> list = new ArrayList<StudentAbility>();
 
@@ -56,7 +69,10 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 			
 			System.out.println("33333333333333333");
 			
-			if (students.size() == 0) {
+			if (students==null||students.size() == 0) {
+				
+				service.finishWork(StaticData.StringData.StuAbilityWorker);
+				
 				return;
 			}
 
@@ -72,6 +88,8 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 
 			if (students.size() < 10) {
 
+				service.finishWork(StaticData.StringData.StuAbilityWorker);
+				
 				return;
 
 			} else {
@@ -135,9 +153,7 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 				
 				sum=sum+courseability.getScore();
 				
-				
-				
-				
+
 				AbilityStander abilityStander=new AbilityStander(abilityName,score,courseability.getScore());
 				listAbilityStander.add(abilityStander);
 
@@ -156,14 +172,9 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 			for (int j = 0; j < listAbilityStander.size(); j++) {
 				
 				AbilityStander ab=listAbilityStander.get(j);
-				
-				
-				
-				
+
 				double xMapping=ab.getMapping()/sum;
 				double xScore=ab.getScore()*xMapping;
-				
-
 				
 				
 				Field f = a.getField(ab.getAbility());
@@ -171,14 +182,7 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 				Double tempX = (Double)f.get(abi);
 				
 				f.set(abi, new Double(tempX+xScore));
-				
-				
 
-				if(ab.getAbility().equals("abilitya")){
-					
-					System.out.println(xScore);
-					
-				}
 				
 			}
 			
@@ -188,20 +192,8 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 			StudentAbilityDAO studentAbilityDao = (StudentAbilityDAO) MyBeansFactory.getBeans("studentabilitydao");
 			
 			studentAbilityDao.insertStudentAbility(abi);
-			
-	
-	//		System.out.println(abi.getAbilityaa());
-			
-			
-	//		System.out.println("aaa:"+ab.getMapping());
-	//		DecimalFormat df = new DecimalFormat("#.00");  
-     //       System.out.println("aaayyy:"+df.format(xMapping));  
-      //      System.out.println("aaasss:"+sum);  
-//			System.out.println("aaahhh:"+ab.getScore());
-
-			//studentAbilityDao.insertStudentAbilityAll(abi);
-
-			//stuCourseDao.deleteStudentCourseByStuId(stuid);
+			studentAbilityDao.insertStudentAbilityAll(abi);
+			stuCourseDao.deleteStudentCourseByStuId(stuid);
 			
 			
 		} catch (Exception e) {

@@ -88,6 +88,11 @@
 		<property name="mapperInterface" value="com.klaus.dao.FileUploadStatementDAO"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
 	</bean>
+	
+	<bean id="empinfodao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.klaus.dao.EmpInfoDAO"></property>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
+	</bean>
 
 
 </beans>  

@@ -21,5 +21,7 @@
 	<bean id="stuabilityworker" class="com.klaus.workserviceimpl.StuAbilityWorkerServiceImpl"/>
     <bean id="empforecastserviceimpl" class="com.klaus.apiserviceimpl.EmpForecastServiceImpl"/> 
     <bean id="kmeansworkerserviceimpl" class="com.klaus.workserviceimpl.KMeansWorkerServiceImpl"/> 
+    <bean id="empserviceimpl" class="com.klaus.apiserviceimpl.EmpServiceImpl"/> 
+    <bean id="empexceldbserviceimpl" class="com.klaus.workserviceimpl.EmpExcelDBServiceImpl"/> 
 
 </beans>  

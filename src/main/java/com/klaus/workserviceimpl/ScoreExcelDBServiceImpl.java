@@ -51,7 +51,7 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 	}
 
-	public void saveExcel() {
+	private void saveExcel() {
 
 		int sheetCount = workbook.getNumberOfSheets(); // SheetµÄÊýÁ¿
 
@@ -168,34 +168,6 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 				}
 
 			}
-			/*
-			 * else{ for (Map.Entry<String, String> entry : tempMap.entrySet())
-			 * { System.out.println("Key = " + entry.getKey() + ", Value = " +
-			 * entry.getValue()); String key = entry.getKey(); if
-			 * ("StudentName".equals(key) || "StudentId".equals(key) ||
-			 * "StudentGrade".equals(key) || "-".equals(entry.getValue())) { }
-			 * else {
-			 * 
-			 * CourseDAO course = (CourseDAO)
-			 * MyBeansFactory.getBeans("coursedao");
-			 * 
-			 * StuCourseDAO stuCS = (StuCourseDAO)
-			 * MyBeansFactory.getBeans("stucoursedao"); String
-			 * idTag=stuCS.getStudentCourse(stuId, course.getCourseId(key));
-			 * 
-			 * if(null==idTag){
-			 * 
-			 * StuCourse stuC = new StuCourse();
-			 * stuC.setId(TimeUtil.getObjectId());
-			 * stuC.setCourseId(course.getCourseId(key));
-			 * stuC.setScore(entry.getValue()); stuC.setStuId(stuId);
-			 * 
-			 * stuCS.insertStudentCourse(stuC);
-			 * 
-			 * }
-			 * 
-			 * } } }
-			 */
 
 		}
 
