@@ -102,9 +102,15 @@ public class EmpExcelDBServiceImpl implements ExcelDBService {
 						info.setApartment(cellValue14);						
 						
 						
-						empInfoDao.insertAllEmpInfo(info);
-						empInfoDao.insertEmpInfo(info);
 						
+						EmpInfo empp= empInfoDao.getInfobyStuId(SecurityCoder.encryptSHA(cellValue2));
+						
+						if(empp==null){
+							
+							empInfoDao.insertAllEmpInfo(info);
+							empInfoDao.insertEmpInfo(info);
+							
+						}
 						
 						System.out.println(info.getId()+"  "+info.getChoose());
 						

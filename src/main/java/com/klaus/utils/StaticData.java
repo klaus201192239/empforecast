@@ -18,6 +18,7 @@ public class StaticData {
 		public final static String ScoreWorker = "scoreworker";
 		public final static String StuAbilityWorker = "stuabilityworker";
 		public final static String EmpWorker = "employmentworker";
+		public final static String MergeWorker = "mergeworker";
 		
 	}
 	

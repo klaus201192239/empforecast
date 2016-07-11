@@ -68,7 +68,7 @@ public class ScoreWRWorkerServiceImpl implements WorkerService {
 		
 		System.out.println("4444444444444444444");
 		
-		ExcelDBService scoreExcel = (ExcelDBService) MyBeansFactory.getBeans("scoreexcelDBServiceimpl");
+		
 		
 		for (int i = 0; i < length; i++) {
 
@@ -84,8 +84,12 @@ public class ScoreWRWorkerServiceImpl implements WorkerService {
 				
 				System.out.println("66666666666666666666");
 				
-				scoreExcel.saveData(filePath);
+				//ExcelDBService scoreExcel = (ExcelDBService) MyBeansFactory.getBeans("scoreexcelDBServiceimpl");
+				//scoreExcel.saveData(filePath);
 
+				ScoreExcelDBServiceImpl dd=new ScoreExcelDBServiceImpl();
+				dd.saveData(filePath);
+				
 				
 				file.delete();
 				

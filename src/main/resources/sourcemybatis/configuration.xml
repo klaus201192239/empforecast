@@ -18,6 +18,8 @@
 		<mapper class="com.klaus.dao.TempScoreFileDAO" />
 		<mapper class="com.klaus.dao.FileUploadStatementDAO" />
 		<mapper class="com.klaus.dao.EmpInfoDAO" />
+		<mapper class="com.klaus.dao.DBCountDAO" />
+		<mapper class="com.klaus.dao.AbilityEmpDAO" />
 		
 	</mappers>
 	

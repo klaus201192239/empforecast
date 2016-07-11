@@ -1,5 +1,7 @@
 package com.klaus.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -12,5 +14,8 @@ public interface StudentDAO {
 	
 	@Select("select id from student where stuid=#{idcard}")
     public String getStudentId(String idcard);
+	
+	@Select("select * from student;")
+    public List<Student> getAllStudentId();
 
 }

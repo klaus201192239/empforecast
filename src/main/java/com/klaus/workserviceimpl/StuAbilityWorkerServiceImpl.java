@@ -78,6 +78,9 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 
 			for (int i = 0; i < students.size(); i++) {
 
+				
+				System.out.println("insert");
+				
 				insertStuAbility(students.get(i));
 
 			}
@@ -164,10 +167,16 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 
 		try {
 			
+			
+			System.out.println("aa11111111111111");
+			
 			StudentAbility abi = new StudentAbility();
 			abi.setStuId(stuid);
 
 			Class<?> a =abi.getClass();		
+			
+			
+			System.out.println("aa222222222222222222");
 			
 			for (int j = 0; j < listAbilityStander.size(); j++) {
 				
@@ -177,12 +186,16 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 				double xScore=ab.getScore()*xMapping;
 				
 				
+			//	System.out.println("aa3333333333333");
+				
 				Field f = a.getField(ab.getAbility());
 				
 				Double tempX = (Double)f.get(abi);
 				
 				f.set(abi, new Double(tempX+xScore));
 
+				
+			//	System.out.println("aa444444444444444444");
 				
 			}
 			
@@ -191,14 +204,23 @@ public class StuAbilityWorkerServiceImpl implements WorkerService {
 			
 			StudentAbilityDAO studentAbilityDao = (StudentAbilityDAO) MyBeansFactory.getBeans("studentabilitydao");
 			
+			
+			
+			System.out.println("aa555555555555555555");
+			
 			studentAbilityDao.insertStudentAbility(abi);
 			studentAbilityDao.insertStudentAbilityAll(abi);
-			stuCourseDao.deleteStudentCourseByStuId(stuid);
+			
+			
+			System.out.println("right ;"+stuid);
+			
+			
+			//stuCourseDao.deleteStudentCourseByStuId(stuid);
 			
 			
 		} catch (Exception e) {
 			
-			
+			System.out.println("wrong :  "+stuid);
 			
 		}
 

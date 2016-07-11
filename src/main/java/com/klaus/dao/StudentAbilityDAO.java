@@ -25,7 +25,16 @@ public interface StudentAbilityDAO {
 	@Select("select abilitya from studentabilityall;")
     public List<Double> getAllNumberAbilityA();
 	
+	@Select("select stuid from studentability;")
+    public List<String> getAllUpdateStuId();
+	
 	@Select("select * from studentabilityall;")
     public List<StudentAbility> getAllInfo();
+	
+	@Select("select * from studentability where stuid=#{stuid};")
+    public StudentAbility getInfoByStuId(String stuid);
+	
+	@Select("select count(*) from studentability;")
+    public int getUpdateInfoCount();
 	
 }

@@ -34,19 +34,34 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 	Map<String, String> map = new HashMap<String, String>();
 
+	
+	private String ffll;
+	
 	public void saveData(String filePath) {
 
 		try {
+			
+			
+			ffll=filePath;
 
 			File excelFile = new File(filePath); // 创建文件对象
 			FileInputStream is = new FileInputStream(excelFile); // 文件流
 			workbook = WorkbookFactory.create(is); // 这种方式 Excel 2003/2007/2010
 													// 都是可以处理的
 
+			System.out.println(filePath);
+			
+			System.out.println("hahahahahah");
+			
+			
 			saveExcel();
 
 		} catch (Exception e) {
 
+			
+			System.out.println("lalalalalalala");
+			
+			
 		}
 
 	}
@@ -138,7 +153,7 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 				for (Map.Entry<String, String> entry : tempMap.entrySet()) {
 
-					System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+					//System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
 
 					String key = entry.getKey();
 
@@ -155,9 +170,13 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 							stuC.setId(TimeUtil.getObjectId());
 							stuC.setCourseId(courseid);
-							stuC.setStuId(objId);
+							//stuC.setStuId(objId);
+							stuC.setStuId(idCard);
+							
 							stuC.setScore(entry.getValue());
 
+							
+							System.out.println(ffll+"  "+stuC.getScore());
 							
 							stuCS.insertStudentCourse(stuC);
 							stuCS.insertStudentCourseAll(stuC);
@@ -212,7 +231,9 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 	}
 
 	private void getCousrInfo(int r, int c, String cellValue) {
-
+		
+		//System.out.println("getCousrInfo(int r, i");
+		
 		if (r == 1 && c >= 5) {
 
 			if (cellValue.length() != 0) {
@@ -284,6 +305,10 @@ public class ScoreExcelDBServiceImpl implements ExcelDBService {
 
 	private void getCourseGrade(int r, int c, String cellValue) {
 
+		
+		//System.out.println("getCourseGrade(int r, ");
+		
+		
 		if (r >= 5) {
 
 			if (c == 1) {

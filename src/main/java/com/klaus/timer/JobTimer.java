@@ -9,7 +9,7 @@ public class JobTimer extends HttpServlet {
 
 	public void init() throws ServletException {
 
-		/*     
+	/*	    
 		Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {                          
@@ -36,7 +36,15 @@ public class JobTimer extends HttpServlet {
             	WorkerService worker=(WorkerService) MyBeansFactory.getBeans("stuabilityworker");
                 worker.start();
             }
-        }, 6000, 5000);
+        }, 10000, 5000);
+        
+        Timer timer3 = new Timer();
+        timer3.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+            	WorkerService worker=(WorkerService) MyBeansFactory.getBeans("mergeworkerserviceimpl");
+                worker.start();
+            }
+        }, 16000, 5000);
         
 		*/
 	}
