@@ -1,6 +1,7 @@
 package com.klaus.apiserviceimpl;
 
 import java.io.BufferedReader;
+//import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
 import java.text.DecimalFormat;
@@ -24,9 +25,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.map.ObjectMapper;
-
 import com.klaus.apiservice.EmpForecastService;
 import com.klaus.bean.Ability;
 import com.klaus.bean.AbilityStander;
@@ -87,12 +86,24 @@ public class EmpForecastServiceImpl implements EmpForecastService {
 
 		}
 
+		
+		
 		return listResult;
 
 	}
 
 	
 	public void saveExcel() {
+		
+	//	try{
+			
+		//	workbook = WorkbookFactory.create(new FileInputStream("F:/as.xls")); // 这种方式 Excel2003/2007/2010 都是可以处理的
+			
+		//}catch(Exception e){
+			
+		//}
+		
+		
 		
 		getAbilityInfo();
 		
@@ -240,37 +251,62 @@ public class EmpForecastServiceImpl implements EmpForecastService {
 					
 					Field f =fields[h];
 					
-					System.out.println(f.getName());
-					//System.out.println(f.get(abi));
+					//System.out.println(f.getName());
 					
-				}
-				
-				
-				
-				String strTemp="";
-				
-				Process pr = Runtime.getRuntime().exec("python test.py"+str);
-				
-				BufferedReader in = new BufferedReader(new InputStreamReader(pr.getInputStream()));
-				String line;
-				while ((line = in.readLine()) != null) {
+					if(f.getName().equals("id")||f.getName().equals("stuId")){
+						
+					}else{	
+						
+						//System.out.println(f.get(abi));
 
-					strTemp=strTemp+line;
+						str=str+f.get(abi)+",";
+
+						
+					}
 					
 				}
-				in.close();
-				pr.waitFor();
 				
+			
+				String strr=str.substring(0, str.length()-1);
 				
-				ObjectMapper mapper = new ObjectMapper();  
-			    JsonNode root = mapper.readTree(strTemp);  
+				//System.out.println(strr);
+				
+				String s="",re="";
+    			
+    			//String strr="2,2,2,2,2,2,2,2,20000,21,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2.9878,2,2,2,2,2,200,2,2,2,2,2";
+    			
+    			Process process = Runtime.getRuntime().exec("python E:/myproject/python/emp/employ/beta1/rf.py "+strr);
+    			
+    			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+    			
+    			while((s=bufferedReader.readLine()) != null){
+    				
+    				//System.out.println(s);
+    			
+    				re=re+s;
+    				
+    			}
+    			
+    			process.waitFor();
+    			
+    			//System.out.println(re);
+    			
+    			ObjectMapper objectMapper=new ObjectMapper(); 
+    			
+    			Map<String,String> mapp= objectMapper.readValue(re, Map.class);
+    			
+    			//System.out.println("city:"+map.get("city"));
+    			//System.out.println("apartment:"+map.get("apartment"));
+    			//System.out.println("choose:"+map.get("choose"));
 		
-				mapResult.put("city", root.get("city").toString());
-				mapResult.put("choose", root.get("choose").toString());
-				mapResult.put("apartment", root.get("apartment").toString());
+				mapResult.put("city", mapp.get("city").toString());
+				mapResult.put("choose", mapp.get("choose").toString());
+				mapResult.put("apartment", mapp.get("apartment").toString());
 			    
 				
 				listResult.add(mapResult);
+				
+				
 				
 				
 			    //JsonNode data = root.path("data");  

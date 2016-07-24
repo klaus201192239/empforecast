@@ -76,8 +76,7 @@ public class AbilityServiceAPI {
 		AbilityService service=(AbilityService)MyBeansFactory.getBeans("abilityserviceimpl");
 		
 		return service.getAbilityList();
-		
-		
+			
 	}
 	
 	

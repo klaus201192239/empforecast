@@ -2,7 +2,12 @@ package com.klaus.test;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.klaus.apiserviceimpl.EmpForecastServiceImpl;
 import com.klaus.factory.MyBeansFactory;
 import com.klaus.workservice.WorkerService;
 
@@ -109,26 +114,55 @@ public class TestMain {
 		//WorkerService worker=(WorkerService) MyBeansFactory.getBeans("mergeworkerserviceimpl");
         //worker.start();
 		
-
+/*
 		
 		try{
 			
-			String s="";
 			
-			Process process = Runtime.getRuntime().exec("python D:\\demo.py");
+			
+			String s="",re="";
+			
+			String str="2,2,2,2,2,2,2,2,20000,21,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2.9878,2,2,2,2,2,200,2,2,2,2,2";
+			
+			Process process = Runtime.getRuntime().exec("python E:/myproject/python/emp/employ/beta1/rf.py "+str);
 			
 			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			
 			while((s=bufferedReader.readLine()) != null){
 				
-				System.out.println(s);
+				//System.out.println(s);
+			
+				re=re+s;
 				
 			}
 			
 			process.waitFor();
 			
+			//System.out.println(re);
 			
-		}catch(Exception e){}
+			ObjectMapper objectMapper=new ObjectMapper(); 
+			
+			Map<String, String> map = objectMapper.readValue(re, Map.class);
+			
+			System.out.println("city:"+map.get("city"));
+			System.out.println("apartment:"+map.get("apartment"));
+			System.out.println("choose:"+map.get("choose"));
+
+
+
+			
+			
+			
+		}catch(Exception e){
+			
+			
+		}*/
+		
+		
+		EmpForecastServiceImpl emp=new EmpForecastServiceImpl();
+		
+		emp.saveExcel();
+		
 		
 		System.out.println("Test End");
 
