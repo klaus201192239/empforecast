@@ -22,7 +22,7 @@ public class AbilityServiceAPI {
 	public Map<?, ?> addIndex(final List<?> jsonIndexes){
 		
 		
-		// [{"name":"AAAA"},{"name":"BBBBBBB"},{"name":"CCCCCC"},{"name":"DDDDDDDD"} ]
+		// [{"name":"AAAA","id":"32132423432"},{"name":"BBBBBBB","id":"32132423432"},{"name":"CCCCCC","id":"32132423432"} ]
 		
 		AbilityService service=(AbilityService)MyBeansFactory.getBeans("abilityserviceimpl");
 		

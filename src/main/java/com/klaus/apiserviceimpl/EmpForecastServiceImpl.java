@@ -599,4 +599,16 @@ public class EmpForecastServiceImpl implements EmpForecastService {
 
 	}
 
+
+	public Map<String, String> uploadScoreInfo(String stuid, String pwd) {
+		// TODO Auto-generated method stub
+		
+		Map<String,String> sd=new HashMap<String,String>();
+		
+		sd.put("klaus", "haha");
+		
+		return sd;
+		
+	}
+
 }

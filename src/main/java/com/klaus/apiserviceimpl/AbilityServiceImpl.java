@@ -18,33 +18,29 @@ public class AbilityServiceImpl implements AbilityService {
 
 	public Map<?, ?> addIndex(List<?> jsonIndexes) {
 
-		// [{"name":"AAAA"},{"name":"BBBBBBB"},{"name":"CCCCCC"},{"name":"DDDDDDDD"}
-		// ]
+		// [{"name":"AAAA","id":"32132423432"},{"name":"BBBBBBB","id":"32132423432"},{"name":"CCCCCC","id":"32132423432"} ]
 
 		Map<String, String> result = new HashMap<String, String>();
 
 		try {
 
+			AbilityDAO abilityService = (AbilityDAO) MyBeansFactory.getBeans("abilitydao");
+			
+			abilityService.deleteAbilityName();
+			
+			Ability ability =null;
+			
 			for (int i = 0; i < jsonIndexes.size(); i++) {
 
 				@SuppressWarnings("unchecked")
 				Map<String, String> map = (Map<String, String>) jsonIndexes.get(i);
+				
 
-				String name = map.get("name");
+				ability = new Ability();
+				ability.setId(map.get("id"));
+				ability.setName(map.get("name"));
 
-				AbilityDAO abilityService = (AbilityDAO) MyBeansFactory.getBeans("abilitydao");
-
-				String tag = abilityService.getIdByName(name);
-
-				if (tag == null) {
-
-					Ability ability = new Ability();
-					ability.setId(TimeUtil.getObjectId());
-					ability.setName(name);
-
-					abilityService.insertAbility(ability);
-
-				}
+				abilityService.insertAbility(ability);
 
 			}
 
@@ -197,7 +193,14 @@ public class AbilityServiceImpl implements AbilityService {
 
 		AbilityDAO abilityDao = (AbilityDAO) MyBeansFactory.getBeans("abilitydao");
 
-		List<Ability> listB = abilityDao.getAbilityInfo();
+		List<Ability> listB = abilityDao.getAbilityInfoList();
+		
+		if(null==listB||listB.size()==0){
+			
+			List<String> listC = abilityDao.getAbilityInfoIdList();
+			
+			return listC;
+		}
 
 		return listB;
 	}

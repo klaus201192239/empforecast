@@ -9,4 +9,6 @@ public interface EmpForecastService {
 	
 	public List<Map<String, String>> uploadExcel(HttpServletRequest req);
 	
+	public Map<String, String> uploadScoreInfo(String stuid,String pwd);
+	
 }

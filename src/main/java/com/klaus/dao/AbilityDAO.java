@@ -2,6 +2,7 @@ package com.klaus.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
@@ -26,5 +27,14 @@ public interface AbilityDAO {
 	
 	@Select("select count(*) from ability where id=#{id}")
     public int getAbilityCount(String id);
+	
+	@Delete("delete from abilityinfo;")
+    public void deleteAbilityName();
+	
+	@Select("select * from abilityinfo order by id desc")
+    public List<Ability> getAbilityInfoList();
+	
+	@Select("select id from ability order by id desc")
+    public List<String> getAbilityInfoIdList();
 	
 }
