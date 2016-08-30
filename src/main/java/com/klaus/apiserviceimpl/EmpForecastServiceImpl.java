@@ -36,6 +36,7 @@ import com.klaus.dao.AbilityDAO;
 import com.klaus.dao.CourseAbilityDAO;
 import com.klaus.dao.CourseDAO;
 import com.klaus.factory.MyBeansFactory;
+import com.klaus.urpscore.ScorePaser;
 
 public class EmpForecastServiceImpl implements EmpForecastService {
 
@@ -598,14 +599,190 @@ public class EmpForecastServiceImpl implements EmpForecastService {
 		}
 
 	}
+	
+	
+	public static void main(String[] args) {
+		
+		
+		EmpForecastServiceImpl ss=new EmpForecastServiceImpl();
+		
+		ss.uploadScoreInfo("201192239", "553355");
+		
+	}
 
 
 	public Map<String, String> uploadScoreInfo(String stuid, String pwd) {
 		// TODO Auto-generated method stub
 		
-		Map<String,String> sd=new HashMap<String,String>();
+		Map<String,String> sd=null;//=new HashMap<String,String>();
 		
-		sd.put("klaus", "haha");
+		//sd.put("klaus", "haha");
+		
+		
+		getAbilityInfo();
+		
+		
+		CourseDAO course = (CourseDAO) MyBeansFactory.getBeans("coursedao");
+		CourseAbilityDAO courseAbilityDao = (CourseAbilityDAO) MyBeansFactory.getBeans("courseabilitydao");
+		
+		
+		double sum = 0.0;
+
+		List<AbilityStander> listAbilityStander = new ArrayList<AbilityStander>();
+
+		ScorePaser paser=new ScorePaser(stuid, pwd);
+		
+		try {
+			
+			List<Map<String,String>> list= paser.getScoreAfterPater();
+			
+			for(int i=0;i<list.size();i++){
+				
+				
+				
+				String courseid = course.getCourseId(list.get(i).get("courseid"));
+				
+				if (courseid != null) {
+
+					List<CourseAbility> listCA = courseAbilityDao.getMappingByCourseId(courseid);
+
+					for (int h = 0; h < listCA.size(); h++) {
+
+						CourseAbility courseability = listCA.get(h);
+
+						String abilityName = abilityMap.get(courseability.getAbilityId());
+
+						double score = ScoreTransaction(list.get(i).get("grade"));
+
+						sum = sum + courseability.getScore();
+
+						AbilityStander abilityStander = new AbilityStander(abilityName, score,courseability.getScore());
+						listAbilityStander.add(abilityStander);
+
+					}
+
+				}
+				
+				
+			}
+
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
+			
+			StudentAbility abi = new StudentAbility();
+			
+			Class<?> a =abi.getClass();		
+
+			
+			for (int j = 0; j < listAbilityStander.size(); j++) {
+				
+				AbilityStander ab=listAbilityStander.get(j);
+
+
+				double xMapping=ab.getMapping()/sum;
+				
+				double xScore=ab.getScore()*xMapping;
+				
+				Field f = a.getField(ab.getAbility());
+
+				
+				Double tempX = (Double)f.get(abi);
+				
+				f.set(abi, new Double(tempX+xScore));
+
+				
+			}
+			
+			String str="";
+			//mapResult=new HashMap<String, String>();
+			
+			
+			Field[] fields=a.getFields();
+			for(int h=0;h<fields.length;h++){
+				
+				Field f =fields[h];
+				
+				//System.out.println(f.getName());
+				
+				if(f.getName().equals("id")||f.getName().equals("stuId")){
+					
+				}else{	
+					
+					//System.out.println(f.get(abi));
+
+					str=str+f.get(abi)+",";
+
+					
+				}
+				
+			}
+			
+		
+			String strr=str.substring(0, str.length()-1);
+			
+			//System.out.println(strr);
+			
+			String s="",re="";
+			
+			//String strr="2,2,2,2,2,2,2,2,20000,21,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2.9878,2,2,2,2,2,200,2,2,2,2,2";
+			
+			Process process = Runtime.getRuntime().exec("python E:/myproject/python/emp/employ/beta1/rf.py "+strr);
+			
+			BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			
+			while((s=bufferedReader.readLine()) != null){
+				
+				//System.out.println(s);
+			
+				re=re+s;
+				
+			}
+			
+			process.waitFor();
+			
+			//System.out.println(re);
+			
+			ObjectMapper objectMapper=new ObjectMapper(); 
+			
+			sd= objectMapper.readValue(re, Map.class);
+			
+			System.out.println("city:"+sd.get("city"));
+			System.out.println("apartment:"+sd.get("apartment"));
+			System.out.println("choose:"+sd.get("choose"));
+	
+			//mapResult.put("city", mapp.get("city").toString());
+			//mapResult.put("choose", mapp.get("choose").toString());
+			//mapResult.put("apartment", mapp.get("apartment").toString());
+		    
+			
+			//listResult.add(mapResult);
+			
+			
+			
+			
+		    //JsonNode data = root.path("data");  
+		      // 提取 info  
+		      //JsonNode info = data.path("info");  
+		  
+		      //System.out.println(info.size());  
+		  
+		      // 得到 info 的第 0 个  
+		      //JsonNode item = info.get(0);  
+		      //System.out.println(item.get("id"));  
+		      //System.out.println(item.get("timestamp"));  
+		    
+			
+		} catch (Exception e) {
+			
+			System.out.println("wrong :  ");
+			
+		}
+		
+		
 		
 		return sd;
 		

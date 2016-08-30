@@ -34,6 +34,10 @@ public class EmpForecastAPI {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Map<String,String> uploadStudentInfo(@PathParam("stuid")String stuid,@PathParam("pwd")String pwd) {
 
+		
+		//不能用Spring的单例模式！！！！！！
+		
+		
 		EmpForecastService service = (EmpForecastService) MyBeansFactory.getBeans("empforecastserviceimpl");
 		
 		return service.uploadScoreInfo(stuid, pwd);
