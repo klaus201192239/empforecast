@@ -20,6 +20,7 @@
 		<mapper class="com.klaus.dao.EmpInfoDAO" />
 		<mapper class="com.klaus.dao.DBCountDAO" />
 		<mapper class="com.klaus.dao.AbilityEmpDAO" />
+		<mapper class="com.klaus.dao.SsdutEmpInfoDAO" />
 		
 	</mappers>
 	

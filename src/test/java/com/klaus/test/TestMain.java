@@ -1,15 +1,11 @@
 package com.klaus.test;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.List;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.klaus.apiserviceimpl.EmpForecastServiceImpl;
+import com.klaus.bean.SsdutEmpInfo;
+import com.klaus.dao.SsdutEmpInfoDAO;
 import com.klaus.factory.MyBeansFactory;
-import com.klaus.workservice.WorkerService;
+import com.klaus.workserviceimpl.SsdutEmpWorkerServiceImpl;
 
 public class TestMain {
 
@@ -159,10 +155,21 @@ public class TestMain {
 		}*/
 		
 		
-		EmpForecastServiceImpl emp=new EmpForecastServiceImpl();
+	//	SsdutEmpWorkerServiceImpl emp=new SsdutEmpWorkerServiceImpl();
 		
-		emp.saveExcel();
+	//	emp.start();
 		
+		SsdutEmpInfoDAO ssdutEmpInfoDao=(SsdutEmpInfoDAO)MyBeansFactory.getBeans("ssdutempinfodao");
+		
+		List<SsdutEmpInfo> ll=ssdutEmpInfoDao.getPageList(0);
+		
+		
+		for(int i=0;i<ll.size();i++){
+			
+			
+			System.out.println(ll.get(i).getTitle());
+			
+		}
 		
 		System.out.println("Test End");
 

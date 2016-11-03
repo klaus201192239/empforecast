@@ -24,6 +24,8 @@
     <bean id="empserviceimpl" class="com.klaus.apiserviceimpl.EmpServiceImpl"/> 
     <bean id="empexceldbserviceimpl" class="com.klaus.workserviceimpl.EmpExcelDBServiceImpl"/> 
     <bean id="mergeworkerserviceimpl" class="com.klaus.workserviceimpl.MergeWorkerServiceImpl"/> 
-    
+    <bean id="ssdutempworkerserviceimpl" class="com.klaus.workserviceimpl.SsdutEmpWorkerServiceImpl"/> 
+    <bean id="ssdutempinfoserviceimpl" class="com.klaus.apiserviceimpl.SsdutEmpInfoServiceImpl"/> 
+    <bean id="employserviceimpl" class="com.klaus.apiserviceimpl.EmployServiceImpl"/> 
 
 </beans>  

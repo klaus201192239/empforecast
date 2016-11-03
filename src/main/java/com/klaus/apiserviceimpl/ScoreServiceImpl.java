@@ -66,7 +66,7 @@ public class ScoreServiceImpl implements ScoreService {
 	
 	public String uploadExcel(HttpServletRequest req) {
 
-		String result="All files have been uploaded~";
+		String result="ok";
 
 		
 		String state=String.valueOf(System.currentTimeMillis());
@@ -116,7 +116,7 @@ public class ScoreServiceImpl implements ScoreService {
 					
 					tempScoreFileDao.insertFile(filaName);
 					
-					result="All files have been uploaded. But please set the mapping of the course and the ability";
+					result="notdone";
 					
 					tag=0;
 					
@@ -129,7 +129,7 @@ public class ScoreServiceImpl implements ScoreService {
 
 		} catch (Exception ex) {
 			
-			result="Something is wrong. Please upload file again~";
+			result="wrong";
 			
 			FileUploadStatementDAO fileUploadStatementDao=(FileUploadStatementDAO)MyBeansFactory.getBeans("fileuploadstatementdao");
 			fileUploadStatementDao.deleteFileState(id);
